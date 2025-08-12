@@ -40,14 +40,14 @@ export function getUserStore(apiUrl: string) {
                     ...initialvals,
                     logout: async (username: string) => {
                         const user = await logoutUser(apiUrl, username);
-                        const newstate = { userName: user.userName, role: user.roleName, rolerank: user.roleRank, sessionkey: user.sessionKey, errorMessage: user.errorMessage, isLoggedIn: false };
+                        const newstate = { userName: "", role: "", roleRank: 0, sessionKey: "", errorMessage: user.errorMessage, isLoggedIn: false };
                         sessionStorage.setItem(keyname, JSON.stringify(newstate));
                         set(newstate);
                     },
                     login: async (username: string, password: string) => {
                         const user = await loginUser(apiUrl, username, password);
                         const loggedin = !user.sessionKey ? false : true;
-                        const newstate = { userName: user.userName, role: user.roleName, rolerank: user.roleRank, sessionkey: user.sessionKey, errorMessage: user.errorMessage, isLoggedIn: loggedin };
+                        const newstate = { userName: user.userName, role: user.roleName, roleRank: user.roleRank, sessionKey: user.sessionKey, errorMessage: user.errorMessage, isLoggedIn: loggedin };
                         sessionStorage.setItem(keyname, JSON.stringify(newstate));
                         set(newstate);
                     }
