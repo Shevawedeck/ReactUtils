@@ -19,10 +19,11 @@ export function useSessionTimeout({apiUrl, timeout, pathtologin}: SessionTimeout
         if (isLoggedIn){
             await logout(username);
             if (pathtologin){
-                Navigate({to: pathtologin});
+                Navigate({ to: pathtologin });
             }
         }
-    }
+    };
+    
     const {start, reset} = useIdleTimer({
         timeout,
         onIdle: handleOnIdle,
